@@ -4,6 +4,8 @@ import Albums from "./component/topAlbums";
 import NewAlbum from "./component/newAlbum";
 import BasicTabs from "./component/genreList";
 import Faqs from "./component/faq";
+
+
 function App() {
   return (
     <div className="App">

@@ -26,7 +26,7 @@ export default function Faqs() {
     <div>
       <div className="w-full">
         <h1 className="text-4xl text-white text-center p-3">FAQs</h1>
-        <div className="m-auto w-2/4">
+        <div className="m-auto w-3/4 md:w-2/4">
           {data.map((item, index) => (
             <Accordion
               key={index}

@@ -7,6 +7,7 @@ import CardActionArea from "@mui/material/CardActionArea";
 export default function MultiActionAreaCard({ list }) {
   const stateValue = list.follows ?? list.likes;
   const stateLabel = list.follows ? "" : "likes";
+
   return (
     <div>
       <Card>

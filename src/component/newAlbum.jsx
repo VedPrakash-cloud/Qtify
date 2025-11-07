@@ -10,6 +10,7 @@ import "swiper/css/pagination";
 export default function NewAlbum() {
   const [album, setAlbum] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isClicked, setIsClicked] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +38,7 @@ export default function NewAlbum() {
         grabCursor={true}
         centeredSlides={true}
         slidesPerView={"4"}
+        initialSlide={3}
         coverflowEffect={{
           rotate: 35,
           stretch: 0,
@@ -48,13 +50,17 @@ export default function NewAlbum() {
       >
         {isOpen ? 
         <div className="flex gap-5 flex-wrap justify-center">
-            {album.map((item,index)=>(
-                <SongCard list={item} key={index} />
+            {album.map((item)=>(
+                <div value={isClicked} onClick={()=>setIsClicked(item.id)}>
+                  <SongCard list={item} key={item.id} />
+                </div>
             ))}
-        </div> : 
-        album.map((item,index)=>(
-            <SwiperSlide key={index}>
+        </div> :
+        album.map((item)=>(
+            <SwiperSlide key={item.id}>
+                <div value={isClicked} onClick={()=>setIsClicked(item.id)}>
                 <SongCard list={item} />
+                </div>
             </SwiperSlide>
         ))
         }

@@ -56,7 +56,7 @@ export default function LabTabs() {
       <Box sx={{ width: "100%", typography: "body1" }}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <TabList onChange={handleChange}>
+            <TabList onChange={handleChange} className="mb-3">
               {list.map((item, index) => (
                 <Tab
                   label={item.label}
@@ -72,6 +72,7 @@ export default function LabTabs() {
             grabCursor={true}
             centeredSlides={true}
             slidesPerView={"4"}
+            initialSlide={3}
             coverflowEffect={{
               rotate: 35,
               stretch: 0,
