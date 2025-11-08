@@ -57,7 +57,7 @@ export default function MusicPlayer({list}) {
           })}
       />
       </div>
-      <div className="flex w-1/5 items-center">
+      <div className="flex w-2/5 md:w-1/5 items-center">
         <VolumeDownRounded />
         <Slider
           aria-label="Volume"
