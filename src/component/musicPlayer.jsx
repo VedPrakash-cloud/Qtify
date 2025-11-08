@@ -26,7 +26,7 @@ export default function MusicPlayer({list}) {
             <FastForwardRounded />
         </div>
       </div>
-      <div className="w-2/5">
+      <div className="w-full px-6 md:w-2/5">
         <Slider
         aria-label="time-indicator"
         size="small"
@@ -57,7 +57,7 @@ export default function MusicPlayer({list}) {
           })}
       />
       </div>
-      <div className="flex w-2/5 md:w-1/5 items-center">
+      <div className="flex w-full px-6 md:w-1/5 items-center">
         <VolumeDownRounded />
         <Slider
           aria-label="Volume"
