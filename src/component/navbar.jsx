@@ -95,7 +95,7 @@ export default function Navbar() {
               <input
                 type="text"
                 placeholder="Search an album of your choice"
-                className="w-auto p-2 rounded-l-md outline-none"
+                className="w-80 p-2 rounded-l-md outline-none"
               />
               <button type="button">
                 <CiSearch
