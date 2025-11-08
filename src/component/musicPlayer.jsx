@@ -14,13 +14,13 @@ export default function MusicPlayer({list}) {
 
 
   return (
-    <div className="bg-green-300/50 grid justify-items-center py-5 cursor-pointer">
+    <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-full shadow-lg shadow-green-400/40 grid justify-items-center py-5 cursor-pointer">
       <div className="flex gap-5 justify-center">
         <div className="rounded-full p-2 hover:bg-gray-200/25">
         <FastRewindRounded />
         </div>
         <div onClick={() => setClicked(!clicked)} className="rounded-full p-2 hover:bg-gray-200/25">
-          {clicked ? <PauseRounded /> : <PlayArrowRounded />}
+          {clicked ?  <PlayArrowRounded /> : <PauseRounded />}
         </div>
         <div className="rounded-full p-2 hover:bg-gray-200/25">
             <FastForwardRounded />
@@ -36,14 +36,14 @@ export default function MusicPlayer({list}) {
         max={duration}
         onChange={(_, value) => setPosition(value)}
         sx={(t) => ({
-            color: "rgba(0,0,0,0.87)",
+            color: "rgba(9, 98, 138, 0.95)",
             "& .MuiSlider-track": {
               border: "none",
             },
             "& .MuiSlider-thumb": {
               width: 24,
               height: 24,
-              backgroundColor: "#fff",
+              backgroundColor: "#4feaec8c",
               "&::before": {
                 boxShadow: "0 4px 8px rgba(0,0,0,0.4)",
               },
@@ -52,7 +52,7 @@ export default function MusicPlayer({list}) {
               },
             },
             ...t.applyStyles("dark", {
-              color: "#fff",
+              color: "#1c7be886",
             }),
           })}
       />
@@ -63,14 +63,14 @@ export default function MusicPlayer({list}) {
           aria-label="Volume"
           defaultValue={70}
           sx={(t) => ({
-            color: "rgba(0,0,0,0.87)",
+            color: "rgba(33, 79, 196, 0.95)",
             "& .MuiSlider-track": {
               border: "none",
             },
             "& .MuiSlider-thumb": {
               width: 24,
               height: 24,
-              backgroundColor: "#fff",
+              backgroundColor: "#60acdfa0",
               "&::before": {
                 boxShadow: "0 4px 8px rgba(0,0,0,0.4)",
               },
@@ -79,7 +79,7 @@ export default function MusicPlayer({list}) {
               },
             },
             ...t.applyStyles("dark", {
-              color: "#fff",
+              color: "#3080b571",
             }),
           })}
         />

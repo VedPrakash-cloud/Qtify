@@ -51,7 +51,7 @@ export default function LabTabs() {
   };
 
   return (
-    <div className="text-[#FFFFFF] my-3 px-6 font-semibold">
+    <div className="text-[#FFFFFF] mt-3 px-6 font-semibold">
       <h1>Songs</h1>
       <Box sx={{ width: "100%", typography: "body1" }}>
         <TabContext value={value}>

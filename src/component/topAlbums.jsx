@@ -16,8 +16,8 @@ export default function Albums() {
   const [play, setPlay] = useState(false)
 
   const handleClick =(e)=>{
-    setIsClicked(e.id)
-    setPlay(true)
+    setIsClicked(e);
+    setPlay(true);
   }
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export default function Albums() {
             {songData.map((item) => (
               <div
                 value={isClicked}
-                onClick={() => setIsClicked(item.id)}
+                onClick={() => handleClick(item.id)}
               >
                 <SongCard key={item.id} list={item} />
               </div>
@@ -82,7 +82,7 @@ export default function Albums() {
             <SwiperSlide key={item.id}>
               <div
                 value={isClicked}
-                onClick={handleClick}
+                onClick={()=>handleClick(item.id)}
               >
                 <SongCard list={item} />
               </div>
@@ -90,7 +90,7 @@ export default function Albums() {
           ))
         )}
       </Swiper>
-        <div className="relative top-[1370px] md:top-[1330px] w-full px-2">
+        <div className="my-4 px-2">
           {play && <MusicPlayer />}
         </div>
     </div>
