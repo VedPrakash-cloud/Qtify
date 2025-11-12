@@ -1,19 +1,19 @@
 import Navbar from "./component/navbar";
-import Hero from "./component/hero";
-import Albums from "./component/topAlbums";
-import NewAlbum from "./component/newAlbum";
-import BasicTabs from "./component/genreList";
+import Home from "./component/Home";
 import Faqs from "./component/faq";
+import SongLists from "./component/songLists";
+import { Routes, Route } from "react-router-dom";
 
 
 function App() {
   return (
     <div className="App">
       <Navbar/>
-      <Hero />
-      <Albums />
-      <NewAlbum />
-      <BasicTabs />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path="/album/:id" element={<SongLists />}/>
+        <Route path="/new-album/:id" element={<SongLists />}/>
+      </Routes>
       <Faqs />
     </div>
   );

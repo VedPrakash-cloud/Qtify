@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Logo from "../assets/logo.svg";
 import Snackbar from "@mui/material/Snackbar";
+import { useNavigate } from "react-router-dom";
 import { Alert } from "@mui/material";
 import { CiSearch } from "react-icons/ci";
 import Modal from "react-modal";
@@ -17,6 +18,8 @@ export default function Navbar() {
   });
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  const navigate= useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,7 +60,9 @@ export default function Navbar() {
   return (
     <div>
       <div className=" bg-[#34C94B] p-4 flex justify-between">
-        <img src={Logo} alt="logo.svg" width={100} height={100} />
+        <button onClick={()=>{navigate('/')}}>
+          <img src={Logo} alt="logo.svg" width={100} height={100} />
+        </button>
         <div className="hidden md:flex border border-black rounded-md">
           <input
             type="text"

@@ -1,23 +1,19 @@
 import SongCard from "./songCard";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-import MusicPlayer from "./musicPlayer";
+
 
 export default function NewAlbum() {
   const [album, setAlbum] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [isClicked, setIsClicked] = useState("");
-  const [play, setPlay] = useState(false);
+  const navigate = useNavigate();
 
-  const handleClick = (e) => {
-    setIsClicked(e);
-    setPlay(true);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,7 +60,9 @@ export default function NewAlbum() {
         {isOpen ? (
           <div className="flex gap-5 flex-wrap justify-center">
             {album.map((item) => (
-              <div value={isClicked} onClick={() => handleClick(item.id)}>
+              <div key={item.id} onClick={()=>{
+                navigate(`/new-album/${item.id}`, {state:{album:item, type:"new"}})
+              }}>
                 <SongCard list={item} key={item.id} />
               </div>
             ))}
@@ -72,14 +70,15 @@ export default function NewAlbum() {
         ) : (
           album.map((item) => (
             <SwiperSlide key={item.id}>
-              <div value={isClicked} onClick={() => handleClick(item.id)}>
+              <div onClick={()=>{
+                navigate(`/new-album/${item.id}`, {state:{album:item, type:"new"}})
+              }}>
                 <SongCard list={item} />
               </div>
             </SwiperSlide>
           ))
         )}
       </Swiper>
-      <div className="my-4 px-2">{play && <MusicPlayer />}</div>
     </div>
   );
 }

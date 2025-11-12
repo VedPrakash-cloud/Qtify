@@ -11,11 +11,13 @@ import { EffectCoverflow, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import Musicplayer from './musicPlayer'
 
 export default function LabTabs() {
   const [value, setValue] = useState("1");
   const [list, setList] = useState([]);
   const [albumList, setAlbumList] = useState([]);
+  const[play, setPlay] = useState(false);
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -87,7 +89,9 @@ export default function LabTabs() {
                     {albumList.filter((song)=>
                     genre.key === 'ALL' ? true: song.genre?.key === genre.key).map((song)=>(
                         <SwiperSlide key={song.id}>
-                            <SongCard list={song}/>
+                            <div onClick={()=>setPlay(!play)}>
+                              <SongCard list={song}/>
+                            </div>
                         </SwiperSlide>
                     ))
                     }
@@ -95,6 +99,9 @@ export default function LabTabs() {
             ))}
           </Swiper>
         </TabContext>
+        <div>
+          {play && <Musicplayer />}
+        </div>
       </Box>
     </div>
   );

@@ -1,24 +1,20 @@
 import SongCard from "./songCard";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-import MusicPlayer from "./musicPlayer";
 
 
 export default function Albums() {
   const [songData, setSongData] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [isClicked, setIsClicked] = useState("");
-  const [play, setPlay] = useState(false)
+  const navigate = useNavigate();
 
-  const handleClick =(e)=>{
-    setIsClicked(e);
-    setPlay(true);
-  }
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,8 +66,10 @@ export default function Albums() {
           <div className="flex justify-center gap-5 flex-wrap">
             {songData.map((item) => (
               <div
-                value={isClicked}
-                onClick={() => handleClick(item.id)}
+                key={item.id}
+                onClick = {()=>{
+                  navigate(`/album/${item.id}`, {state:{album:item, type:"top"}})
+                }}
               >
                 <SongCard key={item.id} list={item} />
               </div>
@@ -81,8 +79,10 @@ export default function Albums() {
           songData.map((item) => (
             <SwiperSlide key={item.id}>
               <div
-                value={isClicked}
-                onClick={()=>handleClick(item.id)}
+                key={item.id}
+                onClick={()=>{
+                  navigate(`/album/${item.id}`, {state:{album:item,type:"top"}})
+                }}
               >
                 <SongCard list={item} />
               </div>
@@ -90,9 +90,6 @@ export default function Albums() {
           ))
         )}
       </Swiper>
-        <div className="my-4 px-2">
-          {play && <MusicPlayer />}
-        </div>
     </div>
   );
 }
