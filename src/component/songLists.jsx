@@ -3,6 +3,8 @@ import Pagination from "@mui/material/Pagination";
 import { useState } from "react";
 import Stack from "@mui/material/Stack";
 import Musicplayer from './musicPlayer';
+import { CiShuffle } from "react-icons/ci";
+import { MdLibraryMusic } from "react-icons/md";
 
 export default function SongLists() {
   const location = useLocation();
@@ -63,6 +65,15 @@ export default function SongLists() {
             {album.songs.length} Songs . {getPlaylistDuration(album)} .{" "}
             {album.follows} Follows
           </p>
+          <div className="flex gap-5 mt-3">
+            <button className="flex items-center gap-2 shadow-md shadow-white/30 rounded-md px-4 text-lg bg-[#34C94B]">
+            <CiShuffle /> Shuffle
+          </button>
+          <button className="flex items-center gap-2 shadow-md shadow-white/30 border border-[#34C94B] rounded-md px-4 text-lg text-[#34C94B]">
+            <MdLibraryMusic />
+            Add to library
+          </button>
+          </div>
         </div>
       </div>
       <div className="flex justify-end text-white">
