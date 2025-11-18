@@ -5,10 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { Alert } from "@mui/material";
 import { CiSearch } from "react-icons/ci";
 import Modal from "react-modal";
+import { Link } from "react-router-dom"
+
 
 Modal.setAppElement("#root");
 
-export default function Navbar() {
+export default function Navbar({option, setOption, setActiveForm}) {
   const [isClicked, setIsClicked] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -19,7 +21,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const navigate= useNavigate()
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,10 +59,19 @@ export default function Navbar() {
     setIsClicked(false);
   };
 
+  const handleClick = ()=>{
+    setOption(false);
+  }
+
+
   return (
     <div>
       <div className=" bg-[#34C94B] p-4 flex justify-between">
-        <button onClick={()=>{navigate('/')}}>
+        <button
+          onClick={() => {
+            navigate("/home");
+          }}
+        >
           <img src={Logo} alt="logo.svg" width={100} height={100} />
         </button>
         <div className="hidden md:flex border border-black rounded-md">
@@ -76,13 +87,46 @@ export default function Navbar() {
             />
           </button>
         </div>
-        <button
-          type="button"
-          onClick={() => setIsClicked(true)}
-          className="hidden md:block bg-[#121212] px-4 py-2 rounded-xl text-[#34C94B] font-semibold text-xl"
-        >
-          Give Feedback
-        </button>
+
+        {/* login and feedback button section */}
+          {option ?
+          (<div className="flex gap-5">
+            <button
+              type="button"
+              onClick={() => setIsClicked(true)}
+              className="hidden md:block bg-[#121212] px-4 py-2 rounded-xl text-[#34C94B] font-semibold text-xl shadow-md"
+            >
+              Give Feedback
+            </button>
+            <Link
+              to={'/'}
+              onClick={handleClick}
+              className="hidden md:block bg-[#121212] px-4 py-2 rounded-xl text-[#34C94B] font-semibold text-xl shadow-md"
+            >
+              Logout
+            </Link>
+          </div>)
+          :
+          (<div className="flex gap-5">
+            <button
+              type="button"
+              onClick={()=>setActiveForm('login')}
+              className="hidden md:block bg-[#121212] px-4 py-2 rounded-xl text-[#34C94B] font-semibold text-xl shadow-md"
+            >
+              Log in
+            </button>
+            <button
+              type='button'
+              onClick={()=>setActiveForm('register')}
+              className="hidden md:block bg-[#121212] px-4 py-2 rounded-xl text-[#34C94B] font-semibold text-xl shadow-md"
+            >
+              Register
+            </button>
+          </div>)
+          }
+
+        {/* login feedback section ends here */}
+
         <button
           className="md:hidden block text-white text-4xl"
           onClick={() => setIsOpen(!isOpen)}
@@ -109,13 +153,41 @@ export default function Navbar() {
                 />
               </button>
             </div>
+            {option ?
+          (<div className="flex gap-5">
             <button
               type="button"
               onClick={() => setIsClicked(true)}
-              className="bg-[#121212] px-4 py-2 rounded-xl text-[#34C94B] font-semibold text-xl"
+              className="bg-[#121212] px-4 py-2 rounded-xl text-[#34C94B] font-semibold text-xl shadow-md"
             >
               Give Feedback
             </button>
+            <Link
+              to={'/'}
+              onClick={handleClick}
+              className="bg-[#121212] px-4 py-2 rounded-xl text-[#34C94B] font-semibold text-xl shadow-md"
+            >
+              Logout
+            </Link>
+          </div>)
+          :
+          (<div className="flex gap-5">
+            <button
+              type="button"
+              onClick={()=>setActiveForm('login')}
+              className="bg-[#121212] px-4 py-2 rounded-xl text-[#34C94B] font-semibold text-xl shadow-md"
+            >
+              Log in
+            </button>
+            <button
+              type='button'
+              onClick={()=>setActiveForm('register')}
+              className="bg-[#121212] px-4 py-2 rounded-xl text-[#34C94B] font-semibold text-xl shadow-md"
+            >
+              Register
+            </button>
+          </div>)
+          }
           </div>
         )}
       </div>
